@@ -51,7 +51,9 @@ function movingBox(){
             curMiss += 1;
             miss.innerHTML = curMiss;
         }
-        bClickedFlag = false;
+        else{
+            bClickedFlag = false;
+        }
         
         /* adjust next clickMe position */
         clickMe.style.marginTop = 
