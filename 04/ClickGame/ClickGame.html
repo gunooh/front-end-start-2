@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="./ClickGame.css">
+</head>
+<body>
+    <div id='wrap'>
+        <div id='game-menu'>
+            <div>
+                <span><b>Score: </b></span>
+                <span id='score'></span>
+            </div>
+            
+            <div>
+                <span><b>Level: </b></span>
+                <span id='level'></span>
+            </div>
+            
+            <div>
+                <span><b>Miss: </b></span>
+                <span id='miss'></span>
+                <span>/</span>
+                <span id='chance'></span>
+            </div>
+        </div>
+        
+        <div id='game-screen'>
+            <div id='click-me'></div>
+        </div>    
+    </div>
+    
+    <script src='./MovingBox.js'></script>
+    <script src='./GameManager.js'></script>
+    <!--<script src='./ClickGame.js'></script>-->
+</body>
+</html>
