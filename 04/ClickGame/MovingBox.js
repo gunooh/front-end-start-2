@@ -59,7 +59,6 @@ function movingBox(){
     this.initRect = function(bGameStart){
         
         if(bGameStart === true){
-            
             clickMe.style.backgroundColor = 'red';
             changePos();
         }
