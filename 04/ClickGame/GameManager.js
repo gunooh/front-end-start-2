@@ -1,5 +1,5 @@
 function GameManager(){
-
+    
     var clickMe = new movingBox();
     var timerId = null;
     
@@ -12,16 +12,16 @@ function GameManager(){
     var checkGameState = (function(){
             //be needed SCORE to pass.
             var needScore = 8;
-            
+                            
             return function(){
-                // Is Game Ended?
-                if(curMiss >= curChance)
+                
+                // Is Game End?
+                if((curMiss >= curChance) || !bGameStart)
                 {
                     bGameStart = false;
-                
-                    clearInterval(timerId);
                     clickMe.initRect(bGameStart);
                     
+                    clearInterval(timerId);
                     setTimeout(function(){
                         gameScreen.innerHTML = 'Game End';
                     }, 1000);
@@ -29,15 +29,16 @@ function GameManager(){
                 
                 //Go to Next Level?
                 if(curScore >= needScore){
+                    needScore += needScore;
+                    
                     curLevel += 1;
                     level.innerHTML = curLevel;
                     
-                    needScore += needScore;
-            
                     if(curChance - 5 <= 0){
                         bGameStart = false;
                         return;
                     }
+                    //subtract Chance...
                     curChance = curChance - 5;
                     chance.innerHTML = curChance;
                 }
@@ -48,16 +49,13 @@ function GameManager(){
     this.start = function(){
         
         initializeGameState();  
-          
+        
         timerId = setInterval(function(){
-            clickMe.changePos();
+            clickMe.initRect(bGameStart);
             checkGameState();
         }, nInterval);
-        
-        clickMe.initRect(bGameStart);
-    };
-    
-    
+
+    }; 
 }
 
 /*********** excute ***********/
