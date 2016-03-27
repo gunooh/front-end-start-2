@@ -11,7 +11,7 @@ function GameManager(){
     };
     var checkGameState = (function(){
             //be needed SCORE to pass.
-            var needScore = 3;
+            var needScore = 8;
                             
             return function(){
                     
