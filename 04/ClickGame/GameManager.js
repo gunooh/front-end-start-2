@@ -11,13 +11,13 @@ function GameManager(){
     };
     var checkGameState = (function(){
             //be needed SCORE to pass.
-            var needScore = 8;
+            var needScore = 3;
                             
             return function(){
-                
+                    
                 // Is Game End?
-                if((curMiss >= curChance) || !bGameStart)
-                {
+                if((curMiss >= curChance) || !bGameStart){
+                    
                     bGameStart = false;
                     clickMe.initRect(bGameStart);
                     
@@ -36,6 +36,9 @@ function GameManager(){
                     
                     if(curChance - 5 <= 0){
                         bGameStart = false;
+                        
+                        curChance = 0;
+                        chance.innerHTML = curChance;
                         return;
                     }
                     //subtract Chance...
