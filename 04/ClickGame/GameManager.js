@@ -1,49 +1,48 @@
-function GameManager(){
+function gameManager(){
     
-    var clickMe = new movingBox();
+    var moving = new movingBox();
     var timerId = null;
     
     var initializeGameState = function(){
-        score.innerHTML = curScore;
-        level.innerHTML = curLevel;
-        miss.innerHTML = curMiss;
-        chance.innerHTML = curChance;
+        gameUtil.score.innerHTML = gameUtil.curScore;
+        gameUtil.level.innerHTML = gameUtil.curLevel;
+        gameUtil.miss.innerHTML = gameUtil.curMiss;
+        gameUtil.chance.innerHTML = gameUtil.curChance;
     };
     var checkGameState = (function(){
             //be needed SCORE to pass.
             var needScore = 8;
                             
             return function(){
-                    
                 // Is Game End?
-                if((curMiss >= curChance) || !bGameStart){
+                if((gameUtil.curMiss >= gameUtil.curChance) || (gameUtil.bGameStart == false)){
                     
-                    bGameStart = false;
-                    clickMe.initRect(bGameStart);
+                    gameUtil.bGameStart = false;
+                    moving.initRect(false);
                     
                     clearInterval(timerId);
                     setTimeout(function(){
-                        gameScreen.innerHTML = 'Game End';
+                        gameUtil.gameScreen.innerHTML = 'Game End';
                     }, 1000);
                 }
                 
                 //Go to Next Level?
-                if(curScore >= needScore){
+                if(gameUtil.curScore >= needScore){
                     needScore += needScore;
                     
-                    curLevel += 1;
-                    level.innerHTML = curLevel;
+                    gameUtil.curLevel += 1;
+                    gameUtil.level.innerHTML = gameUtil.curLevel;
                     
-                    if(curChance - 5 <= 0){
-                        bGameStart = false;
+                    if(gameUtil.   curChance - 5 <= 0){
+                        gameUtil.bGameStart = false;
                         
-                        curChance = 0;
-                        chance.innerHTML = curChance;
+                        gameUtil.curChance = 0;
+                        gameUtil.chance.innerHTML = gameUtil.curChance;
                         return;
                     }
                     //subtract Chance...
-                    curChance = curChance - 5;
-                    chance.innerHTML = curChance;
+                    gameUtil.curChance = gameUtil.curChance - 5;
+                    gameUtil.chance.innerHTML = gameUtil.curChance;
                 }
             };
         })();
@@ -54,13 +53,13 @@ function GameManager(){
         initializeGameState();  
         
         timerId = setInterval(function(){
-            clickMe.initRect(bGameStart);
+            moving.initRect(gameUtil.bGameStart);
             checkGameState();
-        }, nInterval);
+        }, gameUtil.nInterval);
 
     }; 
 }
 
 /*********** excute ***********/
-var manager = new GameManager();
+var manager = new gameManager();
 manager.start();
