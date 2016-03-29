@@ -14,7 +14,10 @@ function gameManager(){
             var needScore = 8;
                             
             return function(){
-                // Is Game End?
+                /*
+                    Is Game End?
+                    - > "Game Fail" OR "Game Clear"
+                */
                 if((gameUtil.curMiss >= gameUtil.curChance) || (gameUtil.bGameStart === false)){
                     
                     gameUtil.bGameStart = false;
