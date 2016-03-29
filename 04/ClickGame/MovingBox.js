@@ -6,17 +6,17 @@ function movingBox(){
     var rctHeight = clickMe.clientHeight;
     var bClickedFlag = true;// Is rectangle clicked?
     
-    /* Score, Miss function */
+    /* Score and Miss function */
     var addScore = function(){
-        curScore += 1;
-        score.innerHTML = curScore;  
+        gameUtil.curScore += 1;
+        gameUtil.score.innerHTML = gameUtil.curScore;  
         
-        curMiss = 0;
-        miss.innerHTML = curMiss;  
+        gameUtil.curMiss = 0;
+        gameUtil.miss.innerHTML = gameUtil.curMiss;  
     };
     var addMiss = function(){
-        curMiss += 1;
-        miss.innerHTML = curMiss;
+        gameUtil.curMiss += 1;
+        gameUtil.miss.innerHTML = gameUtil.curMiss;
     };
     
     /* event */
@@ -46,15 +46,15 @@ function movingBox(){
         
         /* adjust next position */
         clickMe.style.marginTop = 
-            Math.ceil(Math.random() * (scrWidth - rctWidth)) + 'px';   
+            Math.ceil(Math.random() * (gameUtil.scrWidth - rctWidth)) + 'px';   
         clickMe.style.marginLeft = 
-            Math.ceil(Math.random() * (scrHeight - rctHeight)) + 'px';
+            Math.ceil(Math.random() * (gameUtil.scrHeight - rctHeight)) + 'px';
     };
      
     /* 
         Initialize box info
-        If Game starts, Set Color 'red' and Change 'position'
-        Else, Return resource(event listener)....
+        If Game start, Sets Color 'red' and Changes 'position'
+        Else, Returns resource (event listener)....
     */
     this.initRect = function(bGameStart){
         
