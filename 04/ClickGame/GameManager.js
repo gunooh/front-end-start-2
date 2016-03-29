@@ -15,7 +15,7 @@ function gameManager(){
                             
             return function(){
                 // Is Game End?
-                if((gameUtil.curMiss >= gameUtil.curChance) || (gameUtil.bGameStart == false)){
+                if((gameUtil.curMiss >= gameUtil.curChance) || (gameUtil.bGameStart === false)){
                     
                     gameUtil.bGameStart = false;
                     moving.initRect(false);
