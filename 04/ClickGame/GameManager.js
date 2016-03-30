@@ -36,7 +36,7 @@ function gameManager(){
                     gameUtil.curLevel += 1;
                     gameUtil.level.innerHTML = gameUtil.curLevel;
                     
-                    if(gameUtil.   curChance - 5 <= 0){
+                    if(gameUtil.curChance - 5 <= 0){
                         gameUtil.bGameStart = false;
                         
                         gameUtil.curChance = 0;
