@@ -1,49 +1,54 @@
 var template = document.getElementById('searchListTemplate').innerHTML;
 var searchList = document.getElementById('search-list');
 
-var nPage = 1;
-var nMaxPage = 3;
+var apikey = "be1e89c0e9d30433eb906ad6f5fc6ea8";
+var apiurl = "https://apis.daum.net/search/vclip?output=json&apikey=" + apikey;
 
 var button = document.getElementById('searchBtn');
 var nextBtn = document.getElementById('nextBtn');
-
-button.addEventListener('click', function(e){
-    var keyword = edit.value;
-    var apikey = "be1e89c0e9d30433eb906ad6f5fc6ea8";
-    var apiurl = "https://apis.daum.net/search/vclip?q=" + keyword + "&apikey=" + apikey + "&output=json&pageno=" + nPage;
-    
-    nextBtn.style.display = 'block';
-    
-    getJSON(apiurl, function(res){
-        Render(searchList, template, res.channel.item);
-    });
-});
-nextBtn.addEventListener('click', function(e){
-    if(nPage < nMaxPage){
-        nPage++;
-    }
-    else{
-        nextBtn.style.display = 'none';
-        return;
-    }
-    
-    var keyword = edit.value;
-    var apikey = "be1e89c0e9d30433eb906ad6f5fc6ea8";
-    var apiurl = "https://apis.daum.net/search/vclip?q=" + keyword + "&apikey=" + apikey + "&output=json&pageno=" + nPage;
-    
-    getJSON(apiurl, function(res){
-        RenderNext(searchList, template, res.channel.item);
-    });
-});
-
+var nPage = 1;
+var nMaxPage = 3;
 
 function Render(wrap, template, data){
     var html = tmpl(template, {list: data});
     
-    wrap.innerHTML = html;
+    if(wrap.innerHTML == ''){
+        wrap.innerHTML = html;
+    } else {
+        wrap.innerHTML += html;
+    }
 }
-function RenderNext(wrap, template, data){
-    var html = tmpl(template, {list: data});
+
+button.addEventListener('click', function(e){
+    var url = apiurl;
+    var keyword = edit.value;
     
-    wrap.innerHTML += html;
-}
+    searchList.innerHTML='';
+    nPage = 1;
+    nextBtn.style.display = 'block';
+    
+    url += '&q=' + keyword;
+    url += '&pageno=' + 1;
+    
+    getJSON(url, function(res){
+        Render(searchList, template, res.channel.item);
+    });
+});
+nextBtn.addEventListener('click', function(e){
+    var url = apiurl;
+    var keyword = edit.value;
+    
+    if(nPage < nMaxPage){
+        nPage++;
+    }
+    if(nPage == nMaxPage){
+        nextBtn.style.display = 'none';
+    }
+    
+    url += '&q=' + keyword;
+    url += '&pageno=' + nPage;
+    
+    getJSON(url, function(res){
+        Render(searchList, template, res.channel.item);
+    });
+});
