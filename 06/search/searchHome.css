@@ -1,0 +1,5 @@
+* { margin:0; padding: 0; text-decoration: none; list-style-type: none;}
+#sub-wrap { margin:0 auto; border:1px solid black; border-radius:5px; width:500px; }
+#search-bar { text-align: center; margin: 10px 0; }
+#data-wrap { text-align: center; margin: 10px auto; padding: 2px; border:1px solid lightgray; border-radius:5px; width:450px; text-overflow: ellipsis; overflow:hidden; white-space: nowrap;}
+#nextBtn { display: none; margin: 10px auto;}
